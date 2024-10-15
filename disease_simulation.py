@@ -71,6 +71,7 @@ if selected_scenario:
     if st.button("Clear Result"):
         # Clear the result from session state
         st.session_state.result = None
+        st.write("Results cleared. You can sample again.")
         # Refresh the UI by clearing the existing elements
-        st.experimental_set_query_params()
+        #st.experimental_set_query_params()
 
