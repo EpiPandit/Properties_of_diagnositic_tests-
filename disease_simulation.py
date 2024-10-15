@@ -18,11 +18,11 @@ st.title("Infectious Disease Diagnostic Simulation")
 st.header("Instructions for Students")
 st.write("""
 You can perform multiple sampling events to gather your data. Based on the results you collect, calculate:
-1. **Sensitivity**: The proportion of true positives among those who are actually infected.
-2. **Specificity**: The proportion of true negatives among those who are not infected.
+1. **Sensitivity**: The proportion of true positives among those who are actually diseased.
+2. **Specificity**: The proportion of true negatives among those who are not diseased.
 3. **Apparent Prevalence**: The proportion of positive test results in the population.
-4. **Positive Predictive Value (PPV)**: The proportion of individuals with a positive test result who are actually infected.
-5. **Negative Predictive Value (NPV)**: The proportion of individuals with a negative test result who are actually not infected.
+4. **Positive Predictive Value (PPV)**: The proportion of true positives among the test positives.
+5. **Negative Predictive Value (NPV)**: The proportion of true negatives among the test negatives.
 """)
 
 # Scenario details
