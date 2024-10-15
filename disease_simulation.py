@@ -47,13 +47,14 @@ st.write("To repeat click clear results and sample again")
 # Dropdown menu for scenario selection
 selected_scenario = st.selectbox("Select a scenario", list(scenarios.keys()))
 
+# State to keep track of the result
+if 'result' not in st.session_state:
+    st.session_state.result = None
 # Show sampling options if a scenario is selected
 if selected_scenario:
     st.header(f"Sampling an Individual - {selected_scenario}")
 
-    # State to keep track of the result
-    if 'result' not in st.session_state:
-        st.session_state.result = None
+    
 
     # Sample button
     if st.button("Sample an Individual"):
