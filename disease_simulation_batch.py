@@ -47,9 +47,9 @@ scenarios = {
 selected_scenario = st.selectbox("Select a scenario", list(scenarios.keys()))
 
 # Show scenario details
-st.write(f"**Prevalence**: {scenarios[selected_scenario]['prevalence'] * 100}%")
-st.write(f"**Sensitivity**: {scenarios[selected_scenario]['sensitivity'] * 100}%")
-st.write(f"**Specificity**: {scenarios[selected_scenario]['specificity'] * 100}%")
+#st.write(f"**Prevalence**: {scenarios[selected_scenario]['prevalence'] * 100}%")
+#st.write(f"**Sensitivity**: {scenarios[selected_scenario]['sensitivity'] * 100}%")
+#st.write(f"**Specificity**: {scenarios[selected_scenario]['specificity'] * 100}%")
 
 # State to keep track of the results
 if 'batch_results' not in st.session_state:
