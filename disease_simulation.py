@@ -67,11 +67,16 @@ if selected_scenario:
     if st.session_state.result is not None:
         st.write(f"Result: **{st.session_state.result}**")
 
+    # Clear results button
+    if st.session_state.batch_results is not None:
+        if st.button("Clear Results"):
+            st.session_state.result = None
+            st.write("Results cleared. You can sample again.")  
     # Display the clear result button only if there's a result
-    if st.button("Clear Result"):
+    #if st.button("Clear Result"):
         # Clear the result from session state
-        st.session_state.result = None
-        st.write("Results cleared. You can sample again.")
+    #    st.session_state.result = None
+    #    st.write("Results cleared. You can sample again.")
         # Refresh the UI by clearing the existing elements
         #st.experimental_set_query_params()
 
