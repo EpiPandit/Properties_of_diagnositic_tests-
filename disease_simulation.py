@@ -6,29 +6,23 @@ def sample_individual(prevalence, sensitivity, specificity):
     is_infected = random.random() < prevalence
     if is_infected:
         # True Positive or False Negative
-        if random.random() < sensitivity:
-            return "True Positive"
-        else:
-            return "False Negative"
+        return "True Positive" if random.random() < sensitivity else "False Negative"
     else:
         # True Negative or False Positive
-        if random.random() < specificity:
-            return "True Negative"
-        else:
-            return "False Positive"
+        return "True Negative" if random.random() < specificity else "False Positive"
 
 # App title
 st.title("Infectious Disease Diagnostic Simulation")
 
-# Additional information for students
+# Instructions for students
 st.header("Instructions for Students")
 st.write("""
-You can perform multiple sampling events to gather your data. Based on the results you collect calculate:
-- 1. **Sensitivity**: The proportion of true positives among those who are actually infected.
-- 2. **Specificity**: The proportion of true negatives among those who are not infected.
-- 3. **Apparent Prevalence**: The proportion of positive test results in the population.
-- 4. **Positive Predictive Value (PPV)**: The proportion of individuals with a positive test result who are actually infected.
-- 5. **Negative Predictive Value (NPV)**: The proportion of individuals with a negative test result who are actually not infected.
+You can perform multiple sampling events to gather your data. Based on the results you collect, calculate:
+1. **Sensitivity**: The proportion of true positives among those who are actually diseased.
+2. **Specificity**: The proportion of true negatives among those who are not diseased.
+3. **Apparent Prevalence**: The proportion of positive test results in the population.
+4. **Positive Predictive Value (PPV)**: The proportion of true positives among the test positives.
+5. **Negative Predictive Value (NPV)**: The proportion of true negatives among the test negatives.
 """)
 
 # Scenario details
@@ -39,38 +33,27 @@ scenarios = {
     "Scenario 4": {"prevalence": 0.20, "sensitivity": 0.85, "specificity": 0.85},
 }
 
-# Scenario selection screen
-st.header("Choose a disease scenario")
-st.write("Click sample an individual and record the status of sampled individual")
-st.write("To repeat click clear results and sample again")
-
-# Dropdown menu for scenario selection
+# Scenario selection
 selected_scenario = st.selectbox("Select a scenario", list(scenarios.keys()))
 
-# Show sampling options if a scenario is selected
-if selected_scenario:
-    st.header(f"Sampling an Individual - {selected_scenario}")
+# Initialize state to keep track of the sampling result
+if 'result' not in st.session_state:
+    st.session_state.result = None
 
-    # State to keep track of the result
-    if 'result' not in st.session_state:
+# Sampling section
+st.header("Sampling and Testing an Individual/Animal")
+
+# Sample an individual when the button is clicked
+if st.button("Sample an Individual"):
+    st.session_state.result = sample_individual(
+        scenarios[selected_scenario]["prevalence"],
+        scenarios[selected_scenario]["sensitivity"],
+        scenarios[selected_scenario]["specificity"],
+    )
+    st.write(f"Result: **{st.session_state.result}**")
+
+# Clear the result when the Clear Results button is clicked
+if st.session_state.result is not None:
+    if st.button("Clear Results"):
         st.session_state.result = None
-
-    # Sample button
-    if st.button("Sample an Individual"):
-        st.session_state.result = sample_individual(
-            scenarios[selected_scenario]["prevalence"],
-            scenarios[selected_scenario]["sensitivity"],
-            scenarios[selected_scenario]["specificity"],
-        )
-
-    # Display the result if it exists
-    if st.session_state.result is not None:
-        st.write(f"Result: **{st.session_state.result}**")
-
-        # Display the clear result button only if there's a result
-        if st.button("Clear Result"):
-            # Clear the result from session state
-            st.session_state.result = None
-            # Refresh the UI by clearing the existing elements
-            st.experimental_set_query_params()
-
+        st.write("Results cleared. You can sample again.")

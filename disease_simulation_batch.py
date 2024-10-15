@@ -26,11 +26,11 @@ def sample_individuals(prevalence, sensitivity, specificity, num_samples=100):
 st.title("Infectious Disease Diagnostic Simulation - Batch Sampling")
 st.write("""
 You can perform multiple sampling events to gather your data. Based on the results you collect calculate:
-- 1. **Sensitivity**: The proportion of true positives among those who are actually infected.
-- 2. **Specificity**: The proportion of true negatives among those who are not infected.
-- 3. **Apparent Prevalence**: The proportion of positive test results in the population.
-- 4. **Positive Predictive Value (PPV)**: The proportion of individuals with a positive test result who are actually infected.
-- 5. **Negative Predictive Value (NPV)**: The proportion of individuals with a negative test result who are actually not infected.
+1. **Sensitivity**: The proportion of true positives among those who are actually infected.
+2. **Specificity**: The proportion of true negatives among those who are not infected.
+3. **Apparent Prevalence**: The proportion of positive test results in the population.
+4. **Positive Predictive Value (PPV)**: The proportion of individuals with a positive test result who are actually infected.
+5. **Negative Predictive Value (NPV)**: The proportion of individuals with a negative test result who are actually not infected.
 """)
 # Scenario selection screen
 st.header("Choose a Scenario")
@@ -47,19 +47,19 @@ scenarios = {
 selected_scenario = st.selectbox("Select a scenario", list(scenarios.keys()))
 
 # Show scenario details
-st.write(f"**Prevalence**: {scenarios[selected_scenario]['prevalence'] * 100}%")
-st.write(f"**Sensitivity**: {scenarios[selected_scenario]['sensitivity'] * 100}%")
-st.write(f"**Specificity**: {scenarios[selected_scenario]['specificity'] * 100}%")
+#st.write(f"**Prevalence**: {scenarios[selected_scenario]['prevalence'] * 100}%")
+#st.write(f"**Sensitivity**: {scenarios[selected_scenario]['sensitivity'] * 100}%")
+#st.write(f"**Specificity**: {scenarios[selected_scenario]['specificity'] * 100}%")
 
 # State to keep track of the results
 if 'batch_results' not in st.session_state:
     st.session_state.batch_results = None
 
 # Sampling screen
-st.header("Batch Sampling of 100 Individuals")
+st.header("Batch Sampling and Testing of 100 Individuals/Animals")
 
 # Sample button
-if st.button("Sample 100 Individuals"):
+if st.button("Sample and Test 100 Individuals/Animals"):
     st.session_state.batch_results = sample_individuals(
         scenarios[selected_scenario]["prevalence"],
         scenarios[selected_scenario]["sensitivity"],
