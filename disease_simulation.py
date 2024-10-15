@@ -41,7 +41,7 @@ if 'result' not in st.session_state:
     st.session_state.result = None
 
 # Sampling section
-st.header("Sampling an Individual")
+st.header("Sampling and Testing an Individual/Animal")
 
 # Sample an individual when the button is clicked
 if st.button("Sample an Individual"):
