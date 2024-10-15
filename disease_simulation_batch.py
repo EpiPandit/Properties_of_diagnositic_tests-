@@ -56,10 +56,10 @@ if 'batch_results' not in st.session_state:
     st.session_state.batch_results = None
 
 # Sampling screen
-st.header("Batch Sampling of 100 Individuals")
+st.header("Batch Sampling and Testing of 100 Individuals/Animals")
 
 # Sample button
-if st.button("Sample 100 Individuals"):
+if st.button("Sample and Test 100 Individuals/Animals"):
     st.session_state.batch_results = sample_individuals(
         scenarios[selected_scenario]["prevalence"],
         scenarios[selected_scenario]["sensitivity"],
