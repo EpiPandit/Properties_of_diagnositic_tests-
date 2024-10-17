@@ -115,11 +115,11 @@ This simulation demonstrates the complexities of diagnosing hypothyroidism in do
 
 ### Additional Information on Breed-Specific Prevalence
 
-In this simulation, we've included breed-specific prevalence rates for hypothyroidism:
+In this simulation, we've included three breed-specific populations:
 
-1. Golden Retrievers: 60% prevalence
-2. Shih-tzu: 5% prevalence
-3. Alaskan Malamutes: 35% prevalence
+1. Golden Retrievers
+2. Shih-tzu
+3. Alaskan Malamutes
 
 Consider how these different prevalence rates might affect your diagnostic approach and interpretation of results.
 """)
@@ -130,10 +130,11 @@ breed = st.radio("Choose a breed", ('Golden Retriever', 'Shih-tzu', 'Alaskan Mal
 
 # Test type selection
 st.header("Which Thyroid Hormone would you like to test?")
+st.write("For today's classroom exercise, please select T4")
 test_type = st.radio("Select test type", ('T4', 'T3'))
 
 # Number of dogs to sample
-num_dogs = st.slider("Number of dogs to sample", 1, 200, 30)
+num_dogs = st.slider("Number of dogs to sample", 30, 200, 30)
 
 # Initialize state to keep track of the sampled dogs
 if 'dogs_data' not in st.session_state:
@@ -153,50 +154,6 @@ if st.session_state.dogs_data is not None:
     st.write(f"Sampled {breed} Data:")
     st.dataframe(df)
     
-    # Create a strip plot
-    fig, ax = plt.subplots(figsize=(10, 6))
-    sns.stripplot(x='Status', y=f'{test_type} Value', data=df, jitter=True, ax=ax)
-    ax.set_ylabel(f'{test_type} Value ({("nmol/l" if test_type == "T4" else "ng/dl")})')
-    ax.set_title(f'{test_type} Values of Sampled {breed}s')
-    
-    if test_type == 'T4':
-        ax.axhline(y=12, color='green', linestyle='--', label='Lower Normal Limit')
-        ax.axhline(y=45, color='green', linestyle='--', label='Upper Normal Limit')
-    else:  # T3
-        ax.axhline(y=20, color='green', linestyle='--', label='Lower Normal Limit')
-        ax.axhline(y=90, color='green', linestyle='--', label='Upper Normal Limit')
-    
-    plt.legend()
-    st.pyplot(fig)
-
-    # Threshold selection and evaluation
-    st.header("Threshold Selection and Evaluation")
-    if test_type == 'T4':
-        threshold = st.slider(f"Select {test_type} threshold for hypothyroidism diagnosis", 0.0, 50.0, 12.0, 0.1)
-    else:  # T3
-        threshold = st.slider(f"Select {test_type} threshold for hypothyroidism diagnosis", 0.0, 100.0, 20.0, 0.1)
-    
-    df['Diagnosed Hypothyroid'] = df[f'{test_type} Value'] < threshold
-    
-    true_positives = ((df['Is Hypothyroid'] == True) & (df['Diagnosed Hypothyroid'] == True)).sum()
-    true_negatives = ((df['Is Hypothyroid'] == False) & (df['Diagnosed Hypothyroid'] == False)).sum()
-    false_positives = ((df['Is Hypothyroid'] == False) & (df['Diagnosed Hypothyroid'] == True)).sum()
-    false_negatives = ((df['Is Hypothyroid'] == True) & (df['Diagnosed Hypothyroid'] == False)).sum()
-    
-    sensitivity = true_positives / (true_positives + false_negatives) if (true_positives + false_negatives) > 0 else 0
-    specificity = true_negatives / (true_negatives + false_positives) if (true_negatives + false_positives) > 0 else 0
-    
-    st.write(f"Sensitivity: {sensitivity:.2f}")
-    st.write(f"Specificity: {specificity:.2f}")
-    
-    # Confusion matrix
-    st.write("Confusion Matrix:")
-    confusion_matrix = pd.DataFrame({
-        'Actual Hypothyroid': [true_positives, false_negatives],
-        'Actual Healthy': [false_positives, true_negatives]
-    }, index=['Predicted Hypothyroid', 'Predicted Healthy (negative)'])
-    st.dataframe(confusion_matrix)
-
     # Clear the result when the Clear Results button is clicked
     if st.button("Clear Results"):
         st.session_state.dogs_data = None

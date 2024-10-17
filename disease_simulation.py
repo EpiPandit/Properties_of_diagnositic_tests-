@@ -15,14 +15,51 @@ def sample_individual(prevalence, sensitivity, specificity):
 st.title("Infectious Disease Diagnostic Simulation")
 
 # Instructions for students
-st.header("Instructions for Students")
-st.write("""
-You can perform multiple sampling events to gather your data. Based on the results you collect, calculate:
-1. **Sensitivity**: The proportion of true positives among those who are actually diseased.
-2. **Specificity**: The proportion of true negatives among those who are not diseased.
-3. **Apparent Prevalence**: The proportion of positive test results in the population.
-4. **Positive Predictive Value (PPV)**: The proportion of true positives among the test positives.
-5. **Negative Predictive Value (NPV)**: The proportion of true negatives among the test negatives.
+import streamlit as st
+
+st.markdown("""
+## Infectious Disease Diagnostic Simulation Guide
+
+### Setup
+1. Form groups and position yourselves near your sister groups.
+2. Locate the grid on the board for reporting group results.
+
+### Instructions
+1. **Individual Sampling**: Each group member should sample 5 times using the "Sample an Individual" button.
+2. **Group Analysis**: 
+   - Compile your group's results into a 2x2 table.
+   - Calculate:
+     - Sensitivity
+     - Specificity
+     - Positive Predictive Value (PPV)
+     - Negative Predictive Value (NPV)
+     - True Prevalence
+     - Apparent Prevalence
+3. **Reporting**: One group member should report your table and calculated values on the board.
+
+### Scenarios
+You will work through multiple scenarios:
+
+#### Scenario 1
+- Complete the exercise within your initial group.
+- After all groups report, note the overall class prevalence, sensitivity, and specificity.
+
+#### Scenario 2
+- Combine with your sister group to form a larger group.
+- Repeat the analysis with the combined data.
+- When called upon, report:
+  - Comparison of your combined group's true prevalence to the overall class prevalence.
+  - Your thoughts on how representative your sample is of the entire class.
+  - Any insights on the potential condition/outcome being simulated.
+
+#### Scenario 3
+- This scenario will involve a different class-wide approach.
+- Follow the instructor's guidance for compiling and analyzing data as a full class.
+
+### Reflection
+- Consider the effectiveness of the simulated diagnostic test.
+- Discuss its potential utility if it were the only available option.
+- Participate in the concluding review to help improve future iterations of this exercise.
 """)
 
 # Scenario details
