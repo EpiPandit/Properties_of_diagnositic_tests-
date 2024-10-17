@@ -130,6 +130,7 @@ breed = st.radio("Choose a breed", ('Golden Retriever', 'Shih-tzu', 'Alaskan Mal
 
 # Test type selection
 st.header("Which Thyroid Hormone would you like to test?")
+st.write("For today's classroom exercise, please select T4")
 test_type = st.radio("Select test type", ('T4', 'T3'))
 
 # Number of dogs to sample
@@ -154,21 +155,22 @@ if st.session_state.dogs_data is not None:
     st.dataframe(df)
     
     # Create a strip plot
-    fig, ax = plt.subplots(figsize=(10, 6))
-    sns.stripplot(x='Status', y=f'{test_type} Value', data=df, jitter=True, ax=ax)
-    ax.set_ylabel(f'{test_type} Value ({("nmol/l" if test_type == "T4" else "ng/dl")})')
-    ax.set_title(f'{test_type} Values of Sampled {breed}s')
+    #fig, ax = plt.subplots(figsize=(10, 6))
+    #sns.stripplot(x='Status', y=f'{test_type} Value', data=df, jitter=True, ax=ax)
+    #ax.set_ylabel(f'{test_type} Value ({("nmol/l" if test_type == "T4" else "ng/dl")})')
+    #ax.set_title(f'{test_type} Values of Sampled {breed}s')
     
-    if test_type == 'T4':
-        ax.axhline(y=12, color='green', linestyle='--', label='Lower Normal Limit')
-        ax.axhline(y=45, color='green', linestyle='--', label='Upper Normal Limit')
-    else:  # T3
-        ax.axhline(y=20, color='green', linestyle='--', label='Lower Normal Limit')
-        ax.axhline(y=90, color='green', linestyle='--', label='Upper Normal Limit')
+    #if test_type == 'T4':
+    #    ax.axhline(y=12, color='green', linestyle='--', label='Lower Normal Limit')
+    #    ax.axhline(y=45, color='green', linestyle='--', label='Upper Normal Limit')
+    #else:  # T3
+    #    ax.axhline(y=20, color='green', linestyle='--', label='Lower Normal Limit')
+    #    ax.axhline(y=90, color='green', linestyle='--', label='Upper Normal Limit')
     
-    plt.legend()
-    st.pyplot(fig)
+    #plt.legend()
+    #st.pyplot(fig)
 
+    """
     # Threshold selection and evaluation
     st.header("Threshold Selection and Evaluation")
     if test_type == 'T4':
@@ -196,7 +198,7 @@ if st.session_state.dogs_data is not None:
         'Actual Healthy': [false_positives, true_negatives]
     }, index=['Predicted Hypothyroid', 'Predicted Healthy (negative)'])
     st.dataframe(confusion_matrix)
-
+    """
     # Clear the result when the Clear Results button is clicked
     if st.button("Clear Results"):
         st.session_state.dogs_data = None
