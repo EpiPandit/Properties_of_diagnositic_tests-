@@ -154,51 +154,6 @@ if st.session_state.dogs_data is not None:
     st.write(f"Sampled {breed} Data:")
     st.dataframe(df)
     
-    # Create a strip plot
-    #fig, ax = plt.subplots(figsize=(10, 6))
-    #sns.stripplot(x='Status', y=f'{test_type} Value', data=df, jitter=True, ax=ax)
-    #ax.set_ylabel(f'{test_type} Value ({("nmol/l" if test_type == "T4" else "ng/dl")})')
-    #ax.set_title(f'{test_type} Values of Sampled {breed}s')
-    
-    #if test_type == 'T4':
-    #    ax.axhline(y=12, color='green', linestyle='--', label='Lower Normal Limit')
-    #    ax.axhline(y=45, color='green', linestyle='--', label='Upper Normal Limit')
-    #else:  # T3
-    #    ax.axhline(y=20, color='green', linestyle='--', label='Lower Normal Limit')
-    #    ax.axhline(y=90, color='green', linestyle='--', label='Upper Normal Limit')
-    
-    #plt.legend()
-    #st.pyplot(fig)
-
-    """
-    # Threshold selection and evaluation
-    st.header("Threshold Selection and Evaluation")
-    if test_type == 'T4':
-        threshold = st.slider(f"Select {test_type} threshold for hypothyroidism diagnosis", 0.0, 50.0, 12.0, 0.1)
-    else:  # T3
-        threshold = st.slider(f"Select {test_type} threshold for hypothyroidism diagnosis", 0.0, 100.0, 20.0, 0.1)
-    
-    df['Diagnosed Hypothyroid'] = df[f'{test_type} Value'] < threshold
-    
-    true_positives = ((df['Is Hypothyroid'] == True) & (df['Diagnosed Hypothyroid'] == True)).sum()
-    true_negatives = ((df['Is Hypothyroid'] == False) & (df['Diagnosed Hypothyroid'] == False)).sum()
-    false_positives = ((df['Is Hypothyroid'] == False) & (df['Diagnosed Hypothyroid'] == True)).sum()
-    false_negatives = ((df['Is Hypothyroid'] == True) & (df['Diagnosed Hypothyroid'] == False)).sum()
-    
-    sensitivity = true_positives / (true_positives + false_negatives) if (true_positives + false_negatives) > 0 else 0
-    specificity = true_negatives / (true_negatives + false_positives) if (true_negatives + false_positives) > 0 else 0
-    
-    st.write(f"Sensitivity: {sensitivity:.2f}")
-    st.write(f"Specificity: {specificity:.2f}")
-    
-    # Confusion matrix
-    st.write("Confusion Matrix:")
-    confusion_matrix = pd.DataFrame({
-        'Actual Hypothyroid': [true_positives, false_negatives],
-        'Actual Healthy': [false_positives, true_negatives]
-    }, index=['Predicted Hypothyroid', 'Predicted Healthy (negative)'])
-    st.dataframe(confusion_matrix)
-    """
     # Clear the result when the Clear Results button is clicked
     if st.button("Clear Results"):
         st.session_state.dogs_data = None
