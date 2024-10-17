@@ -115,11 +115,11 @@ This simulation demonstrates the complexities of diagnosing hypothyroidism in do
 
 ### Additional Information on Breed-Specific Prevalence
 
-In this simulation, we've included breed-specific prevalence rates for hypothyroidism:
+In this simulation, we've included three breed-specific populations:
 
-1. Golden Retrievers: 60% prevalence
-2. Shih-tzu: 5% prevalence
-3. Alaskan Malamutes: 35% prevalence
+1. Golden Retrievers
+2. Shih-tzu
+3. Alaskan Malamutes
 
 Consider how these different prevalence rates might affect your diagnostic approach and interpretation of results.
 """)
@@ -133,7 +133,7 @@ st.header("Which Thyroid Hormone would you like to test?")
 test_type = st.radio("Select test type", ('T4', 'T3'))
 
 # Number of dogs to sample
-num_dogs = st.slider("Number of dogs to sample", 1, 200, 30)
+num_dogs = st.slider("Number of dogs to sample", 30, 200, 30)
 
 # Initialize state to keep track of the sampled dogs
 if 'dogs_data' not in st.session_state:
