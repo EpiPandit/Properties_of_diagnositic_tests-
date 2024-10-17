@@ -73,21 +73,15 @@ This simulation allows you to explore the challenges of diagnosing hypothyroidis
 
 3. **Generate Data**: Click "Sample Dogs" to create your dataset.
 
-4. **Analyze the Data**:
-   - Examine the strip plot showing hormone levels for hypothyroid and normal dogs.
-   - Note the overlap between the two groups and the position of the normal range lines.
-
-5. **Set a Diagnostic Threshold**:
+4. **Set a Diagnostic Threshold**:
    - Use the slider to set a hormone level below which you'll classify dogs as hypothyroid.
    - Consider the trade-offs between sensitivity (correctly identifying hypothyroid dogs) and specificity (correctly identifying healthy dogs).
-
-6. **Evaluate Your Threshold**:
    - Observe how sensitivity and specificity change as you adjust the threshold.
    - Examine the confusion matrix to understand the implications of false positives and false negatives.
 
 ### Exploring Thresholds and Their Impact
 
-After generating your sample data, follow these steps to systematically analyze the impact of different diagnostic thresholds:
+Follow these steps to systematically analyze the impact of different diagnostic thresholds:
 
 1. **Systematic Threshold Testing**:
    - Start with a low threshold and gradually increase it.
